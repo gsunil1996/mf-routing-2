@@ -4,7 +4,10 @@ const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPl
 const deps = require("./package.json").dependencies;
 module.exports = (_, argv) => ({
   output: {
-    publicPath: "http://localhost:8080/",
+    publicPath:
+      argv.mode === "development"
+        ? "http://localhost:8080/"
+        : "https://mf-routing-container.vercel.app/",
   },
 
   resolve: {
@@ -56,11 +59,20 @@ module.exports = (_, argv) => ({
       name: "container",
       filename: "remoteEntry.js",
       remotes: {
-        marketing: "marketing@http://localhost:8081/remoteEntry.js",
+        marketing:
+          argv.mode === "development"
+            ? "marketing@http://localhost:8081/remoteEntry.js"
+            : "marketing@https://mf-routing-marketing.vercel.app/remoteEntry.js",
 
-        auth: "auth@http://localhost:8082/remoteEntry.js",
+        auth:
+          argv.mode === "development"
+            ? "auth@http://localhost:8082/remoteEntry.js"
+            : "auth@https://mf-routing-auth.vercel.app/remoteEntry.js",
 
-        dashboard: "dashboard@http://localhost:8083/remoteEntry.js",
+        dashboard:
+          argv.mode === "development"
+            ? "dashboard@http://localhost:8083/remoteEntry.js"
+            : "dashboard@http://https://mf-routing-dashboard.vercel.app/remoteEntry.js",
       },
       exposes: {},
       shared: {
