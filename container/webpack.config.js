@@ -72,7 +72,7 @@ module.exports = (_, argv) => ({
         dashboard:
           argv.mode === "development"
             ? "dashboard@http://localhost:8083/remoteEntry.js"
-            : "dashboard@http://https://mf-routing-dashboard.vercel.app/remoteEntry.js",
+            : "dashboard@https://mf-routing-dashboard.vercel.app/remoteEntry.js",
       },
       exposes: {},
       shared: {
