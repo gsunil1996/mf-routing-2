@@ -7,13 +7,9 @@ import Progress from './components/Progress';
 import { useEffect } from 'react';
 import { createBrowserHistory } from 'history';
 
-// const MarketingLazy = lazy(() => import('./components/MarketingApp'));
-// const AuthLazy = lazy(() => import('./components/AuthApp'));
-// const DashboardLazy = lazy(() => import('./components/DashboardApp'));
-
-import MarketingApp from "./components/MarketingApp";
-import AuthApp from './components/AuthApp';
-import DashboardApp from './components/DashboardApp'
+const MarketingLazy = lazy(() => import('./components/MarketingApp'));
+const AuthLazy = lazy(() => import('./components/AuthApp'));
+const DashboardLazy = lazy(() => import('./components/DashboardApp'));
 
 
 const theme = createTheme({
@@ -44,16 +40,7 @@ const App = () => {
             isSignedIn={isSignedIn}
           />
 
-          <Route path="/auth">
-            <AuthApp onSignIn={() => setIsSignedIn(true)} />
-          </Route>
-          <Route path="/dashboard">
-            {!isSignedIn && <Redirect to="/" />}
-            <DashboardApp />
-          </Route>
-          <Route path="/" component={MarketingApp} />
-
-          {/* <Suspense fallback={<Progress />}>
+          <Suspense fallback={<Progress />}>
             <Switch>
               <Route path="/auth">
                 <AuthLazy onSignIn={() => setIsSignedIn(true)} />
@@ -64,7 +51,7 @@ const App = () => {
               </Route>
               <Route path="/" component={MarketingLazy} />
             </Switch>
-          </Suspense> */}
+          </Suspense>
 
         </Router>
       </ThemeProvider>
