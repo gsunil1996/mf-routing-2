@@ -26,7 +26,7 @@ const AuthApp = ({ onSignIn }) => {
     }, []);
 
     return (
-        <div ref={ref} />
+        <div id="_auth-dev-root" ref={ref} />
     )
 }
 

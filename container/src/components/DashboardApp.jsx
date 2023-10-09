@@ -27,7 +27,7 @@ const DashboardApp = () => {
     }, []);
 
     return (
-        <div ref={ref} />
+        <div id="_dashboard-dev-root" ref={ref} />
     )
 }
 

@@ -27,7 +27,7 @@ const MarketingApp = () => {
   }, []);
 
   return (
-    <div ref={ref} />
+    <div id="_marketing-dev-root" ref={ref} />
   )
 }
 
